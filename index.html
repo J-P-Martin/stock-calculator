@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>股票計算機-資金水位! </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  </head>
+  <body class="my-section">
+    <div id="app" class="container p-4">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              投入金額與股價&#x1F330;
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="mb-3">
+                  <label for="amount" class="form-label">金額:</label>
+                  <input type="number" id="amount" v-model="amount" class="form-control" />
+                </div>
+                <div class="mb-3">
+                  <label for="price" class="form-label">股價:</label>
+                  <input type="number" id="price" v-model="price" class="form-control" />
+                </div>
+                <div class="mb-3 d-grid">
+                  <button @click="calculate" class="btn btn-outline-primary">
+                    計算&#x1F9EE;
+                  </button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br></br>
+
+      <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+                計算結果&#x1F40E;
+              </button>
+            </h2>
+            <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <table  class="table table-bordered border-primary">
+                    <tbody>
+                      <tr>
+                        <th scope="row">金額: {{ amount }}</th>
+                      </tr>
+                      <tr>
+                        <th scope="row">股數: {{ result }} </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">張數: {{ result3 }} </th>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+    <script src="https://unpkg.com/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue@3.2.6/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            amount: null,
+            price: null,
+            result: null,
+            result3: null,
+          };
+        },
+        methods: {
+          calculate() {
+            this.result = Math.floor(( this.amount /(this.price * 1000) ) * 1000);
+            this.result3 = this.result / 1000;
+            
+          },
+          
+
+        },
+        
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
+<style>
+  .my-section {
+    background-color: #8CFFFF;
+  }
+</style>
